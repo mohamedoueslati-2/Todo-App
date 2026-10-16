@@ -84,7 +84,7 @@ function TodoApp() {
   }
 
   return (
-    <div>
+    <section className="todo-card">
       <h1>Mes tâches</h1>
 
       <TodoForm onAdd={handleAdd} />
@@ -101,7 +101,7 @@ function TodoApp() {
       />
 
       <p>{remainingCount} tâche(s) restante(s)</p>
-    </div>
+    </section>
   );
 }
 

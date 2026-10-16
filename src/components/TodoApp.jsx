@@ -84,8 +84,13 @@ function TodoApp() {
   }
 
   return (
-    <section className="todo-card">
-      <h1>Mes tâches</h1>
+    <section
+      className="mx-auto w-full max-w-xl rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8"
+      aria-labelledby="todo-title"
+    >
+      <h1 id="todo-title" className="mb-6 text-2xl font-bold">
+        Mes tâches
+      </h1>
 
       <TodoForm onAdd={handleAdd} />
 
@@ -100,7 +105,14 @@ function TodoApp() {
         onDelete={handleDelete}
       />
 
-      <p>{remainingCount} tâche(s) restante(s)</p>
+      <footer className="mt-6 border-t border-slate-200 pt-4">
+        <p className="text-sm text-slate-600" role="status">
+          <strong className="font-semibold text-slate-800">
+            {remainingCount}
+          </strong>{" "}
+          {remainingCount > 1 ? "tâches restantes" : "tâche restante"}
+        </p>
+      </footer>
     </section>
   );
 }

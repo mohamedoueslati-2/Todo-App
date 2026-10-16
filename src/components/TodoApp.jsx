@@ -1,4 +1,5 @@
-import { useReducer, useState, useMemo } from "react";
+import { useState, useMemo } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 import TodoForm from "./TodoForm";
 import FilterBar from "./FilterBar";
 import TodoList from "./TodoList";
@@ -32,7 +33,8 @@ function todoReducer(state, action) {
 }
 
 function TodoApp() {
-  const [todos, dispatch] = useReducer(
+  const [todos, dispatch] = useLocalStorage(
+    "todo-app-todos",
     todoReducer,
     initialTodos
   );

@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer, useState, useMemo } from "react";
 import TodoForm from "./TodoForm";
 import FilterBar from "./FilterBar";
 import TodoList from "./TodoList";
@@ -39,6 +39,19 @@ function TodoApp() {
 
   const [filter, setFilter] = useState("all");
 
+  const filteredTodos = useMemo(() => {
+    switch (filter) {
+      case "active":
+        return todos.filter((todo) => !todo.completed);
+
+      case "completed":
+        return todos.filter((todo) => todo.completed);
+
+      default:
+        return todos;
+    }
+  }, [todos, filter]);
+
   function handleAdd(task) {
     dispatch({
       type: "ADD_TODO",
@@ -76,7 +89,7 @@ function TodoApp() {
       />
 
       <TodoList
-        todos={todos}
+        todos={filteredTodos}
         onToggle={handleToggle}
         onDelete={handleDelete}
       />

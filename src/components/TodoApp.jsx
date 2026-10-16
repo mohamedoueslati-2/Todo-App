@@ -54,6 +54,10 @@ function TodoApp() {
     }
   }, [todos, filter]);
 
+  const remainingCount = todos.filter(
+    (todo) => !todo.completed
+  ).length;
+
   function handleAdd(task) {
     dispatch({
       type: "ADD_TODO",
@@ -95,6 +99,8 @@ function TodoApp() {
         onToggle={handleToggle}
         onDelete={handleDelete}
       />
+
+      <p>{remainingCount} tâche(s) restante(s)</p>
     </div>
   );
 }
